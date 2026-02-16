@@ -1,165 +1,94 @@
+# Canonical Architecture (`src/`)
 
+This file is canonical for backend/core architecture.
+Canonical UI route/component structure is documented in `src/components/readme.md`.
+
+## Setup Notes
+
+```bash
 npm install redis
 npm install @prisma/client
 npm install -D prisma
 npx prisma init --datasource-provider postgresql
+```
 
+Connect existing DB:
+1. Configure `DATABASE_URL` in `prisma.config.ts`.
+2. Run `prisma db pull`.
 
-CONNECT EXISTING DATABASE:
-  1. Configure your DATABASE_URL in prisma.config.ts
-  2. Run prisma db pull to introspect your database.
+Create new DB:
+1. Local: `npx prisma dev`
+2. Cloud: `npx create-db`
 
-CREATE NEW DATABASE:
-  Local: npx prisma dev (runs Postgres locally in your terminal)
-  Cloud: npx create-db (creates a free Prisma Postgres database)
+Then define models in `prisma/schema.prisma` and run `prisma migrate dev`.
 
-Then, define your models in prisma/schema.prisma and run prisma migrate dev to apply your schema.
-
-Learn more: https://pris.ly/getting-started
-
-
----
-
-# ✅ Full File Layout (`src/`)
+## Core Layout
 
 ```text
 src/
-├── pages/
-│   ├── _app.js
-│   ├── _document.js
-│   ├── index.js
-│   ├── chat.js
-│   └── api/
-│       └── chat.js
-│
-├── core/
-│   ├── orchestrator/
-│   │   ├── index.js
-│   │   ├── input.js
-│   │   ├── policy.js
-│   │   ├── memory.js
-│   │   ├── prompt.js
-│   │   ├── routing.js
-│   │   ├── output.js
-│   │   └── persist.js
-│   │
-│   ├── models/
-│   │   ├── index.js
-│   │   ├── openai.js
-│   │   ├── anthropic.js
-│   │   ├── mistral.js
-│   │   └── local.js
-│   │
-│   ├── memory/
-│   │   ├── short/
-│   │   │   ├── index.js
-│   │   │   └── redis.js
-│   │   │
-│   │   └── long/
-│   │       ├── index.js
-│   │       ├── retrieval.js
-│   │       └── summarization.js
-│   │
-│   ├── prompts/
-│   │   ├── system.js
-│   │   ├── personas.js
-│   │   └── tools.js
-│   │
-│   └── types/
-│       ├── message.js
-│       ├── model.js
-│       └── memory.js
-│
-├── lib/
-│   ├── env.js
-│   ├── logger.js
-│   ├── stream.js
-│   └── utils.js
-│
-├── db/
-│   ├── fast/       # Redis helpers or connection code
-│   └── deep/       # Postgres or vector DB helpers
-│
-├── scripts/
-│   ├── summarize.js
-│   └── embed.js
-│
-└── middleware.js
+  core/
+    orchestrator/
+      index.js
+      input.js
+      policy.js
+      memory.js
+      prompt.js
+      routing.js
+      output.js
+      persist.js
+
+    models/
+      index.js
+      huggingface.js
+
+    memory/
+      short/
+        index.js
+        redis.js
+      long/
+        index.js
+        retrieval.js
+        summarization.js
+
+    prompts/
+      system.js
+      personas.js
+      tools.js
+
+    types/
+      message.js
+      model.js
+      memory.js
+
+  lib/
+    env.js
+    logger.js
+    stream.js
+    utils.js
+
+  pages/
+    api/
+      chat.js
 ```
 
----
+## Notes
 
-### ✅ Notes / Guidance
+1. `pages/` is transport-only. Feature pages stay in the nested route layout in `src/components/readme.md`.
+2. `pages/api/chat.js` is the chat transport endpoint and calls the orchestrator.
+3. `core/orchestrator/*` is the AI control flow (input, policy, memory, prompt, routing, output, persist).
+4. `core/models/*` provides unified model adapters and routing.
+5. `core/memory/*` splits short-term and long-term memory access.
 
-1. **`pages/`** → only transport
+## Canonical Tags
 
-   * `_app.js`, `_document.js`, `index.js` → app wrapper / landing page
-   * `chat.js` → chat UI entry point
-   * `api/chat.js` → single serverless endpoint → calls orchestrator
-
-2. **`core/orchestrator/`** → AI brain
-
-   * `index.js` → main entry function
-   * `input.js` → sanitize + validate
-   * `policy.js` → anti-corruption / rules
-   * `memory.js` → orchestrates short & deep memory fetch/store
-   * `prompt.js` → build the prompt array
-   * `routing.js` → fan-out to multiple models
-   * `output.js` → validate model output
-   * `persist.js` → decide what to write to memory
-
-3. **`core/models/`** → unified model interface
-
-   * Each file handles **one provider**
-   * `index.js` exports `callModel()` and registry
-
-4. **`core/memory/`** → memory access layer
-
-   * `short/` → Redis / fast memory
-   * `long/` → Postgres / deep memory
-   * `retrieval.js` → RAG / vector search
-   * `summarization.js` → compress deep memory
-
-5. **`core/prompts/`** → immutable prompts
-
-   * `system.js` → fixed system instructions
-   * `personas.js` → optional personalities
-   * `tools.js` → tool instructions or rules
-
-6. **`core/types/`** → optional runtime contracts (JS objects only)
-
-7. **`lib/`** → helpers
-
-   * `env.js` → environment variables validation
-   * `logger.js` → console/file logging
-   * `stream.js` → streaming utilities for model responses
-   * `utils.js` → misc helpers
-
-8. **`db/`** → database connection helpers (you’ll implement later)
-
-9. **`scripts/`** → background jobs
-
-   * Summarization, embedding, periodic tasks
-
-10. **`middleware.js`** → auth / rate-limiting / security
-
----
-
-# Cannonical Tags
-
-| Tag                   | Description / Usage                                                           |
-| --------------------- | ----------------------------------------------------------------------------- |
-| `chat`                | General conversation, Q&A, casual dialogue                                    |
-| `refine_prompt`       | Prompt refinement, rewriting, or cleaning before sending to downstream models |
-| `summarize`           | Summarization of long text or conversation history                            |
-| `code`                | Coding, code explanation, debugging, generation                               |
-| `embed`               | Embedding generation for semantic search / RAG                                |
-| `classify`            | Classification tasks (sentiment, labeling, tagging)                           |
-| `translate`           | Language translation tasks                                                    |
-| `multimodal`          | Image + text or multimodal input processing                                   |
-| `knowledge_retrieval` | RAG / memory retrieval / query over vector DB                                 |
-| `system_instruction`  | System-level instructions / admin operations                                  |
-| `tool_call`           | External tool invocation (like calculators, web search, API call)             |
-
----
-
+- `chat`
+- `refine_prompt`
+- `summarize`
+- `code`
+- `embed`
+- `classify`
+- `translate`
+- `multimodal`
+- `knowledge_retrieval`
+- `system_instruction`
+- `tool_call`

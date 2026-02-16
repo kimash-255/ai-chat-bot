@@ -1,0 +1,214 @@
+{
+  "updatedAt": "2026-02-16T18:24:41.896Z",
+  "tags": {
+    "lvl_warn": {
+      "count": 30,
+      "firstSeen": "2026-02-16T16:45:27.156Z",
+      "lastSeen": "2026-02-16T18:21:06.991Z",
+      "levels": {
+        "warn": 30
+      }
+    },
+    "evt_postgres_pool_unavailable": {
+      "count": 22,
+      "firstSeen": "2026-02-16T16:45:27.156Z",
+      "lastSeen": "2026-02-16T18:21:06.991Z",
+      "levels": {
+        "warn": 22
+      }
+    },
+    "err_cannot_find_module_pg": {
+      "count": 22,
+      "firstSeen": "2026-02-16T16:45:27.156Z",
+      "lastSeen": "2026-02-16T18:21:06.991Z",
+      "levels": {
+        "warn": 22
+      }
+    },
+    "fp_88af4be5a465": {
+      "count": 22,
+      "firstSeen": "2026-02-16T16:45:27.156Z",
+      "lastSeen": "2026-02-16T18:21:06.991Z",
+      "levels": {
+        "warn": 22
+      }
+    },
+    "evt_auth_me_user_missing": {
+      "count": 3,
+      "firstSeen": "2026-02-16T16:45:27.354Z",
+      "lastSeen": "2026-02-16T16:45:46.612Z",
+      "levels": {
+        "warn": 3
+      }
+    },
+    "fp_4e8a2be34f68": {
+      "count": 3,
+      "firstSeen": "2026-02-16T16:45:27.354Z",
+      "lastSeen": "2026-02-16T16:45:46.612Z",
+      "levels": {
+        "warn": 3
+      }
+    },
+    "evt_auth_me_unauthorized": {
+      "count": 4,
+      "firstSeen": "2026-02-16T16:45:27.360Z",
+      "lastSeen": "2026-02-16T16:48:55.162Z",
+      "levels": {
+        "warn": 4
+      }
+    },
+    "route_api_auth_me": {
+      "count": 204,
+      "firstSeen": "2026-02-16T16:45:27.360Z",
+      "lastSeen": "2026-02-16T18:24:41.311Z",
+      "levels": {
+        "warn": 4,
+        "info": 200
+      }
+    },
+    "fp_f4eefa291eea": {
+      "count": 4,
+      "firstSeen": "2026-02-16T16:45:27.360Z",
+      "lastSeen": "2026-02-16T16:48:55.162Z",
+      "levels": {
+        "warn": 4
+      }
+    },
+    "lvl_info": {
+      "count": 694,
+      "firstSeen": "2026-02-16T16:45:43.437Z",
+      "lastSeen": "2026-02-16T18:24:41.896Z",
+      "levels": {
+        "info": 694
+      }
+    },
+    "evt_login_success": {
+      "count": 3,
+      "firstSeen": "2026-02-16T16:45:43.437Z",
+      "lastSeen": "2026-02-16T16:49:18.190Z",
+      "levels": {
+        "info": 3
+      }
+    },
+    "fp_5ba05233ca13": {
+      "count": 3,
+      "firstSeen": "2026-02-16T16:45:43.437Z",
+      "lastSeen": "2026-02-16T16:49:18.190Z",
+      "levels": {
+        "info": 3
+      }
+    },
+    "evt_auth_me_success": {
+      "count": 477,
+      "firstSeen": "2026-02-16T16:48:29.620Z",
+      "lastSeen": "2026-02-16T18:24:41.896Z",
+      "levels": {
+        "info": 477
+      }
+    },
+    "fp_b56e3fc702b4": {
+      "count": 477,
+      "firstSeen": "2026-02-16T16:48:29.620Z",
+      "lastSeen": "2026-02-16T18:24:41.896Z",
+      "levels": {
+        "info": 477
+      }
+    },
+    "evt_auth_me_no_or_invalid_cookie": {
+      "count": 1,
+      "firstSeen": "2026-02-16T16:48:55.159Z",
+      "lastSeen": "2026-02-16T16:48:55.159Z",
+      "levels": {
+        "warn": 1
+      }
+    },
+    "fp_e9bddb867f37": {
+      "count": 1,
+      "firstSeen": "2026-02-16T16:48:55.159Z",
+      "lastSeen": "2026-02-16T16:48:55.159Z",
+      "levels": {
+        "warn": 1
+      }
+    },
+    "evt_access_start": {
+      "count": 107,
+      "firstSeen": "2026-02-16T17:07:31.192Z",
+      "lastSeen": "2026-02-16T18:24:41.757Z",
+      "levels": {
+        "info": 107
+      }
+    },
+    "fp_c7c59b5f5477": {
+      "count": 100,
+      "firstSeen": "2026-02-16T17:07:31.192Z",
+      "lastSeen": "2026-02-16T18:24:41.289Z",
+      "levels": {
+        "info": 100
+      }
+    },
+    "evt_access_end": {
+      "count": 107,
+      "firstSeen": "2026-02-16T17:07:31.236Z",
+      "lastSeen": "2026-02-16T18:24:41.769Z",
+      "levels": {
+        "info": 107
+      }
+    },
+    "fp_51c160deb329": {
+      "count": 100,
+      "firstSeen": "2026-02-16T17:07:31.236Z",
+      "lastSeen": "2026-02-16T18:24:41.311Z",
+      "levels": {
+        "info": 100
+      }
+    },
+    "route_api_chat": {
+      "count": 6,
+      "firstSeen": "2026-02-16T17:19:41.274Z",
+      "lastSeen": "2026-02-16T17:46:50.279Z",
+      "levels": {
+        "info": 6
+      }
+    },
+    "fp_39ee82b13953": {
+      "count": 3,
+      "firstSeen": "2026-02-16T17:19:41.274Z",
+      "lastSeen": "2026-02-16T17:46:50.229Z",
+      "levels": {
+        "info": 3
+      }
+    },
+    "fp_48e9190b9e9c": {
+      "count": 3,
+      "firstSeen": "2026-02-16T17:19:41.301Z",
+      "lastSeen": "2026-02-16T17:46:50.279Z",
+      "levels": {
+        "info": 3
+      }
+    },
+    "route_api_user_welcome": {
+      "count": 8,
+      "firstSeen": "2026-02-16T18:21:09.591Z",
+      "lastSeen": "2026-02-16T18:24:41.769Z",
+      "levels": {
+        "info": 8
+      }
+    },
+    "fp_731b51639f22": {
+      "count": 4,
+      "firstSeen": "2026-02-16T18:21:09.591Z",
+      "lastSeen": "2026-02-16T18:24:41.757Z",
+      "levels": {
+        "info": 4
+      }
+    },
+    "fp_af3ec8d6b098": {
+      "count": 4,
+      "firstSeen": "2026-02-16T18:21:09.605Z",
+      "lastSeen": "2026-02-16T18:24:41.769Z",
+      "levels": {
+        "info": 4
+      }
+    }
+  }
+}

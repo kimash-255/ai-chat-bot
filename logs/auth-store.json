@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "id": "usr_1771260327165_ty7jn0",
+      "username": "cable",
+      "password_hash": "scrypt$cd2b6f149a1cadd64310c5b2fef6f4ad$7e10f4bd47c46fc98619436b0e49c77984ea8050545ef56b3c0d48f705aaf175345671a3854c7969ccba2ec589d3f73d396981e92e8bfe5e9c5fe1aa6d2da816",
+      "role": "admin",
+      "profile": {
+        "displayName": "System Admin",
+        "bio": "Default administrator profile",
+        "nos": "nos_1771260327304_lisn1c",
+        "friends": [],
+        "friendRequestsInbox": [],
+        "friendRequestsSent": [],
+        "createdBySeed": true,
+        "lastLoginIp": "::1",
+        "lastLoginAt": "2026-02-16T16:49:18.174Z"
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "id": "sess_1771260343431_ff8wq4",
+      "user_id": "usr_1771260327165_ty7jn0",
+      "expires_at": "2026-02-23T16:45:43.431Z",
+      "csrf_token": "fmC3ZFdnX9a-u0WOphfULw"
+    },
+    {
+      "id": "sess_1771260558178_wfnynn",
+      "user_id": "usr_1771260327165_ty7jn0",
+      "expires_at": "2026-02-23T16:49:18.179Z",
+      "csrf_token": "hMc2f7zwdYTDdE4M5e31Dw"
+    }
+  ],
+  "modelConfigs": [],
+  "updatedAt": "2026-02-16T16:49:18.187Z"
+}
