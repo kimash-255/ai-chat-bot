@@ -1,0 +1,334 @@
+/* =========================================
+   GLM Theme Tokens + Effects (Tailwind-ready)
+   Import this into globals.css
+   ========================================= */
+
+
+
+/* ---------- Design Tokens (CSS Variables) ---------- */
+@layer base {
+  :root {
+    /* Surfaces (Light) */
+    --glm-bg: 246 246 247;
+    --glm-surface: 255 255 255;
+    --glm-surface-2: 241 242 244;
+
+    /* Text (Light) */
+    --glm-text: 30 30 36;
+    --glm-text-2: 92 95 102;
+    --glm-muted: 138 143 152;
+
+    /* Lines */
+    --glm-border: 227 229 232;
+
+    /* Brand Gradient Stops (from your logo vibe) */
+    --glm-teal: 46 194 195;
+    --glm-green: 114 207 125;
+    --glm-gold: 245 197 86;
+    --glm-coral: 244 123 110;
+    --glm-magenta: 203 92 185;
+    --glm-purple: 126 87 194;
+
+    /* Semantic */
+    --glm-success: 87 201 136;
+    --glm-warn: 245 197 86;
+    --glm-danger: 230 92 92;
+    --glm-info: 80 160 255;
+
+    /* Radius / Shadows */
+    --glm-radius: 16px;
+    --glm-radius-sm: 12px;
+
+    /* Glows (opacity tuned for “premium” not neon) */
+    --glm-glow-a: 46 194 195;
+    --glm-glow-b: 126 87 194;
+    --glm-glow-opacity: 0.18;
+
+    /* Focus ring */
+    --glm-ring: 126 87 194;
+  }
+
+  /* Dark mode (recommended flagship for GLM) */
+  .dark {
+    --glm-bg: 15 17 21;
+    --glm-surface: 23 26 33;
+    --glm-surface-2: 30 34 44;
+
+    --glm-text: 237 239 243;
+    --glm-text-2: 183 189 199;
+    --glm-muted: 125 133 144;
+
+    --glm-border: 48 54 66;
+
+    /* Keep brand stops same; effects get softer in utilities */
+    --glm-glow-opacity: 0.22;
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    background: rgb(var(--glm-bg));
+    color: rgb(var(--glm-text));
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Better selection */
+  ::selection {
+    background: rgba(var(--glm-purple), 0.22);
+  }
+}
+
+/* ---------- Base UI helpers (use as classnames) ---------- */
+@layer components {
+  /* App background with subtle “halo” like your logo orbits */
+  .glm-app {
+    background:
+      radial-gradient(900px 600px at 18% 12%,
+        rgba(var(--glm-teal), 0.10),
+        transparent 55%),
+      radial-gradient(800px 600px at 82% 18%,
+        rgba(var(--glm-purple), 0.10),
+        transparent 55%),
+      radial-gradient(900px 700px at 50% 92%,
+        rgba(var(--glm-gold), 0.08),
+        transparent 60%),
+      rgb(var(--glm-bg));
+  }
+
+  /* Surfaces */
+  .glm-card {
+    border-radius: var(--glm-radius);
+    background: rgb(var(--glm-surface));
+    border: 1px solid rgba(var(--glm-border), 0.9);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+  }
+
+  .dark .glm-card {
+    box-shadow: 0 10px 28px rgba(0,0,0,0.28);
+  }
+
+  .glm-card--soft {
+    border-radius: var(--glm-radius);
+    background: rgb(var(--glm-surface-2));
+    border: 1px solid rgba(var(--glm-border), 0.8);
+  }
+
+  /* Glass modal/panel (optional, premium) */
+  .glm-glass {
+    border-radius: var(--glm-radius);
+    background: rgba(var(--glm-surface), 0.72);
+    border: 1px solid rgba(var(--glm-border), 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .dark .glm-glass {
+    background: rgba(23, 26, 33, 0.66);
+    border: 1px solid rgba(var(--glm-border), 0.45);
+  }
+
+  /* Gradient border (hero buttons, active cards) */
+  .glm-gradient-border {
+    position: relative;
+    border-radius: var(--glm-radius);
+    background: rgb(var(--glm-surface));
+  }
+  .glm-gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      120deg,
+      rgb(var(--glm-teal)),
+      rgb(var(--glm-green)),
+      rgb(var(--glm-gold)),
+      rgb(var(--glm-coral)),
+      rgb(var(--glm-magenta)),
+      rgb(var(--glm-purple))
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+
+  /* Soft glow (hover / active) */
+  .glm-glow {
+    box-shadow:
+      0 0 0 1px rgba(var(--glm-border), 0.55),
+      0 16px 48px rgba(0,0,0,0.10),
+      0 0 44px rgba(var(--glm-glow-a), var(--glm-glow-opacity)),
+      0 0 64px rgba(var(--glm-glow-b), calc(var(--glm-glow-opacity) * 0.9));
+  }
+
+  .dark .glm-glow {
+    box-shadow:
+      0 0 0 1px rgba(var(--glm-border), 0.35),
+      0 18px 60px rgba(0,0,0,0.40),
+      0 0 54px rgba(var(--glm-glow-a), var(--glm-glow-opacity)),
+      0 0 84px rgba(var(--glm-glow-b), calc(var(--glm-glow-opacity) * 0.95));
+  }
+
+  /* Focus ring (keyboard navigation) */
+  .glm-focus:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px rgba(var(--glm-bg), 0.9),
+      0 0 0 4px rgba(var(--glm-ring), 0.55);
+  }
+
+  /* Buttons */
+  .glm-btn {
+    border-radius: 999px;
+    padding: 10px 14px;
+    border: 1px solid rgba(var(--glm-border), 0.85);
+    background: rgb(var(--glm-surface));
+    color: rgb(var(--glm-text));
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
+  }
+  .glm-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.10);
+    border-color: rgba(var(--glm-border), 1);
+  }
+  .glm-btn:active {
+    transform: translateY(0px);
+  }
+
+  .glm-btn--primary {
+    border: 1px solid rgba(var(--glm-border), 0.35);
+    color: rgb(255 255 255);
+    background: linear-gradient(
+      120deg,
+      rgb(var(--glm-teal)),
+      rgb(var(--glm-gold)),
+      rgb(var(--glm-purple))
+    );
+    box-shadow:
+      0 12px 40px rgba(0,0,0,0.12),
+      0 0 42px rgba(var(--glm-purple), 0.20);
+  }
+  .glm-btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 18px 56px rgba(0,0,0,0.16),
+      0 0 56px rgba(var(--glm-purple), 0.26);
+  }
+
+  .glm-btn--ghost {
+    background: transparent;
+    border: 1px solid rgba(var(--glm-border), 0.65);
+  }
+  .glm-btn--ghost:hover {
+    background: rgba(var(--glm-text), 0.04);
+  }
+
+  /* Inputs */
+  .glm-input {
+    border-radius: var(--glm-radius-sm);
+    border: 1px solid rgba(var(--glm-border), 0.85);
+    background: rgb(var(--glm-surface));
+    color: rgb(var(--glm-text));
+    padding: 10px 12px;
+    transition: box-shadow 160ms ease, border-color 160ms ease;
+  }
+  .glm-input:focus {
+    outline: none;
+    border-color: rgba(var(--glm-ring), 0.55);
+    box-shadow: 0 0 0 4px rgba(var(--glm-ring), 0.18);
+  }
+
+  /* Tag badge base */
+  .glm-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    line-height: 1;
+    border: 1px solid rgba(var(--glm-border), 0.8);
+    background: rgba(var(--glm-text), 0.035);
+    color: rgb(var(--glm-text-2));
+    transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+  }
+  .glm-tag:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+  }
+
+  /* Tag variants (map your canonical tags) */
+  .glm-tag--chat { background: rgba(var(--glm-teal), 0.12); color: rgb(var(--glm-teal)); border-color: rgba(var(--glm-teal), 0.25); }
+  .glm-tag--refine_prompt { background: rgba(var(--glm-gold), 0.14); color: rgb(var(--glm-gold)); border-color: rgba(var(--glm-gold), 0.28); }
+  .glm-tag--summarize { background: rgba(var(--glm-green), 0.14); color: rgb(var(--glm-green)); border-color: rgba(var(--glm-green), 0.28); }
+  .glm-tag--code { background: rgba(99, 102, 241, 0.14); color: rgb(99 102 241); border-color: rgba(99, 102, 241, 0.28); } /* indigo-ish */
+  .glm-tag--embed { background: rgba(var(--glm-teal), 0.10); color: rgb(var(--glm-teal)); border-color: rgba(var(--glm-teal), 0.22); }
+  .glm-tag--classify { background: rgba(245, 197, 86, 0.12); color: rgb(245 197 86); border-color: rgba(245, 197, 86, 0.24); }
+  .glm-tag--translate { background: rgba(168, 85, 247, 0.12); color: rgb(168 85 247); border-color: rgba(168, 85, 247, 0.24); }
+  .glm-tag--multimodal { background: rgba(var(--glm-coral), 0.14); color: rgb(var(--glm-coral)); border-color: rgba(var(--glm-coral), 0.28); }
+  .glm-tag--knowledge_retrieval { background: rgba(34, 197, 94, 0.12); color: rgb(34 197 94); border-color: rgba(34, 197, 94, 0.24); }
+  .glm-tag--system_instruction { background: rgba(148, 163, 184, 0.12); color: rgb(148 163 184); border-color: rgba(148, 163, 184, 0.24); }
+  .glm-tag--tool_call { background: rgba(var(--glm-magenta), 0.14); color: rgb(var(--glm-magenta)); border-color: rgba(var(--glm-magenta), 0.28); }
+}
+
+/* ---------- Scrollbars (clean, subtle) ---------- */
+@layer utilities {
+  .glm-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--glm-muted), 0.35) transparent;
+  }
+  .glm-scroll::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .glm-scroll::-webkit-scrollbar-thumb {
+    background: rgba(var(--glm-muted), 0.28);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  .glm-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--glm-muted), 0.40);
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  /* Subtle animated gradient highlight (for active nav / loading rings) */
+  .glm-gradient {
+    background: linear-gradient(
+      120deg,
+      rgb(var(--glm-teal)),
+      rgb(var(--glm-green)),
+      rgb(var(--glm-gold)),
+      rgb(var(--glm-coral)),
+      rgb(var(--glm-magenta)),
+      rgb(var(--glm-purple))
+    );
+    background-size: 240% 240%;
+    animation: glmGradientShift 8s ease infinite;
+  }
+
+  @keyframes glmGradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Hover lift utility */
+  .glm-hover-lift {
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+  .glm-hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 54px rgba(0,0,0,0.12);
+  }
+}
