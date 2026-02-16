@@ -1,0 +1,5 @@
+// ToolCard.js
+
+export default function ToolCard() {
+  return null;
+}
