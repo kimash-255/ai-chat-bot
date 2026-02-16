@@ -1,0 +1,2 @@
+{"ts":"2026-02-16T15:59:47.465Z","level":"warn","message":"postgres_pool_unavailable","meta":{"error":"Cannot find module 'pg'"}}
+{"ts":"2026-02-16T15:59:48.175Z","level":"warn","message":"postgres_pool_unavailable","meta":{"error":"Cannot find module 'pg'"}}
